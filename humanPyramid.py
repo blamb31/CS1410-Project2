@@ -44,5 +44,5 @@ def main(pyramidHeight):
 	
 
 
-
-main(23)
+# if __name__== "__main__" :
+# 	main(7)
