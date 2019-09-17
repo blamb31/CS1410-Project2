@@ -1,6 +1,6 @@
 #%%
 from time import perf_counter 
-
+import sys
 
 def weightOn(row, column, weight = 200):
 	if row == 0:
@@ -35,7 +35,9 @@ def main(pyramidHeight):
 					rowWeights.append(f"{indWeight:.2f}")
 					columnCount += 1
 					cache[(rowCount, columnCount)] = indWeight
-			print(rowWeights)
+			space = ' '
+			rowWeightsString = space.join(rowWeights)
+			print(rowWeightsString)
 		rowCount += 1
 	t1_stop = perf_counter()  
 	print(f"Elapsed Time: {t1_stop-t1_start} seconds")
@@ -44,5 +46,5 @@ def main(pyramidHeight):
 	
 
 
-# if __name__== "__main__" :
-# 	main(7)
+if __name__== "__main__" :
+	main(int(sys.argv[1]))
