@@ -2,25 +2,38 @@
 from time import perf_counter 
 import sys
 
+cache = {}
+
 def weightOn(row, column, weight = 200):
 	if row == 0:
 		return 0.00
 	elif column == 0:
-		newWeight = (weightOn(row-1, column, weight) + weight) / 2
-		return newWeight
+		if (row, column) in cache.keys():
+			return cache[(row,column)]
+		else:
+			newWeight = (weightOn(row-1, column, weight) + weight) / 2
+			cache[(row,column)] = newWeight
+			return newWeight
 	elif column == row:
-		newWeight = (weightOn(row - 1, column - 1, weight) + weight) / 2
-		return newWeight
+		if (row, column) in cache.keys():
+			return cache[(row,column)]
+		else:
+			newWeight = (weightOn(row - 1, column - 1, weight) + weight) / 2
+			cache[(row,column)] = newWeight			
+			return newWeight
 	else:
-		newWeight = (weight + (weightOn(row - 1, column - 1, weight)/2) + (weightOn(row - 1, column, weight)) / 2)
-		return newWeight
+		if (row, column) in cache.keys():
+			return cache[(row,column)]
+		else:
+			newWeight = (weight + (weightOn(row - 1, column - 1, weight)/2) + (weightOn(row - 1, column, weight)) / 2)
+			cache[(row,column)] = newWeight						
+			return newWeight
 
 
 
 def main(pyramidHeight):
 	t1_start = perf_counter()  
 	rowCount = 0
-	cache = {}
 	while rowCount < pyramidHeight:
 		columnCount = 0
 		if rowCount <= pyramidHeight:
