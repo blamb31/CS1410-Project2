@@ -39,22 +39,15 @@ def main(pyramidHeight):
 		if rowCount <= pyramidHeight:
 			rowWeights = []
 			while columnCount <= rowCount:
-				# if (rowCount, columnCount) in cache.keys():
-				# 	# print('Test ' + str(cache[(rowCount,columnCount)]))
-				# 	rowWeights.append(f"{cache[(rowCount,columnCount)]:.2f}")
-				# 	columnCount += 1
-				# else:
 				indWeight = weightOn(rowCount, columnCount)
 				rowWeights.append(f"{indWeight:.2f}")
 				columnCount += 1
-				# cache[(rowCount, columnCount)] = indWeight
 			space = ' '
 			rowWeightsString = space.join(rowWeights)
 			print(rowWeightsString)
 		rowCount += 1
 	t1_stop = perf_counter()  
 	print(f"Elapsed Time: {t1_stop-t1_start} seconds")
-	# print(cache)
 
 	
 
